@@ -3,52 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X-HOMES Dashboard</title>
+  <title>X-HOMES Landlord Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --green: #10b981;
+      --light: #f9fafb;
+      --white: #ffffff;
+      --gray: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
       display: flex;
-      height: 100vh;
+      min-height: 100vh;
+      background-color: var(--light);
     }
 
     .sidebar {
-      width: 220px;
-      background-color: #10b981;
+      width: 240px;
+      background-color: var(--green);
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       display: flex;
       flex-direction: column;
     }
 
     .sidebar h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      font-weight: 600;
     }
 
     .sidebar a {
       color: white;
       text-decoration: none;
       margin: 15px 0;
-      display: block;
+      font-weight: 500;
+      transition: opacity 0.3s;
     }
 
     .sidebar a:hover {
-      text-decoration: underline;
+      opacity: 0.8;
     }
 
     .main {
       flex: 1;
-      background-color: #f9fafb;
-      padding: 30px;
+      padding: 40px;
+      background-color: var(--light);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--green);
+      margin-bottom: 2rem;
     }
 
     .card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      background-color: var(--white);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--green);
+    }
+
+    .card p {
+      color: var(--gray);
     }
 
     @media (max-width: 768px) {
@@ -60,11 +97,19 @@
         width: 100%;
         flex-direction: row;
         overflow-x: auto;
-        padding: 10px;
+        padding: 10px 20px;
+      }
+
+      .sidebar h2 {
+        display: none;
       }
 
       .sidebar a {
-        margin: 0 10px;
+        margin: 0 15px;
+      }
+
+      .main {
+        padding: 20px;
       }
     }
   </style>
@@ -75,15 +120,29 @@
     <a href="dashboard.html">Dashboard</a>
     <a href="#">My Listings</a>
     <a href="#">Messages</a>
+    <a href="#">Tenants</a>
     <a href="#">Profile</a>
-    <a href="index.html">Back to Home</a>
+    <a href="index.html">Home</a>
     <a href="#">Logout</a>
   </div>
 
   <div class="main">
     <h1>Welcome, Landlord!</h1>
+
     <div class="card">
       <h3>Total Listings</h3>
-      <p>3 active properties</p>
+      <p>3 active properties listed in Accra.</p>
     </div>
+
     <div class="card">
+      <h3>Recent Messages</h3>
+      <p>No new messages at the moment.</p>
+    </div>
+
+    <div class="card">
+      <h3>Booking Requests</h3>
+      <p>2 pending requests awaiting approval.</p>
+    </div>
+  </div>
+</body>
+</html>
