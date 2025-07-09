@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X-HOMES Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #10b981;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+
+    .main {
+      flex: 1;
+      background-color: #f9fafb;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+      }
+
+      .sidebar a {
+        margin: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>X-HOMES</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="#">My Listings</a>
+    <a href="#">Messages</a>
+    <a href="#">Profile</a>
+    <a href="index.html">Back to Home</a>
+    <a href="#">Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>Welcome, Landlord!</h1>
+    <div class="card">
+      <h3>Total Listings</h3>
+      <p>3 active properties</p>
+    </div>
+    <div class="card">
+      <h3>Recent Messages</h3>
+      <p>No new messages</p>
+    </div>
+    <div class="card">
+      <h3>Booking Requests</h3>
+      <p>2 pending approvals</p>
+    </div>
+  </div>
+</body>
+</html>
