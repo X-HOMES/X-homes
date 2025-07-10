@@ -136,6 +136,31 @@
     <h1 id="greeting">Welcome, Landlord!</h1>
 
     <div class="card">
+<h2 style="margin-top: 40px; color: #10b981;">Add New Property</h2>
+<form id="propertyForm" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 20px;">
+  <label>Property Name:<br/>
+    <input type="text" id="name" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Location:<br/>
+    <input type="text" id="location" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Monthly Rent (GHS):<br/>
+    <input type="number" id="rent" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Available From:<br/>
+    <input type="date" id="date" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Description:<br/>
+    <textarea id="desc" rows="4" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;"></textarea>
+  </label>
+
+  <button type="submit" style="background-color: #10b981; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">Submit</button>
+</form>
+
       <h3>Total Listings</h3>
       <p>You have 3 active properties listed in Accra.</p>
     </div>
@@ -165,6 +190,30 @@
     const today = new Date();
     const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
     greeting.innerText = `Welcome, Landlord! Happy ${dayName}`;
-  </script>
+    <script>
+  // Existing interactivity code...
+
+  // Form validation logic
+  document.getElementById('propertyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const location = document.getElementById('location').value.trim();
+    const rent = parseFloat(document.getElementById('rent').value);
+    const date = document.getElementById('date').value;
+    const desc = document.getElementById('desc').value.trim();
+
+    if (!name || !location || !date || !desc || isNaN(rent) || rent <= 0) {
+      alert('Please fill out all fields correctly. Rent must be a positive number.');
+      return;
+    }
+
+    // You can later replace this with a real backend request
+    alert(`Property "${name}" in ${location} has been submitted successfully!`);
+
+    // Optional: Reset form
+    this.reset();
+  });
+</script>
 </body>
 </html>
