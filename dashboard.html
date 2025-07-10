@@ -72,6 +72,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       margin-bottom: 30px;
       transition: transform 0.2s;
+      cursor: pointer;
     }
 
     .card:hover {
@@ -86,6 +87,11 @@
 
     .card p {
       color: var(--gray);
+      display: none;
+    }
+
+    .card.active p {
+      display: block;
     }
 
     @media (max-width: 768px) {
@@ -127,11 +133,11 @@
   </div>
 
   <div class="main">
-    <h1>Welcome, Landlord!</h1>
+    <h1 id="greeting">Welcome, Landlord!</h1>
 
     <div class="card">
       <h3>Total Listings</h3>
-      <p>3 active properties listed in Accra.</p>
+      <p>You have 3 active properties listed in Accra.</p>
     </div>
 
     <div class="card">
@@ -144,5 +150,21 @@
       <p>2 pending requests awaiting approval.</p>
     </div>
   </div>
+
+  <script>
+    // Toggle card content on click
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+
+    // Optional: Show current date greeting
+    const greeting = document.getElementById('greeting');
+    const today = new Date();
+    const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
+    greeting.innerText = `Welcome, Landlord! Happy ${dayName}`;
+  </script>
 </body>
 </html>
