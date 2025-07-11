@@ -144,29 +144,6 @@
     this.reset();
   });
 </script>
-  // Booking form validation
-  document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('tenantName').value.trim();
-    const property = document.getElementById('propertyName').value.trim();
-    const moveIn = new Date(document.getElementById('moveIn').value);
-    const moveOut = new Date(document.getElementById('moveOut').value);
-    const message = document.getElementById('tenantMessage').value.trim();
-
-    if (!name || !property || isNaN(moveIn) || isNaN(moveOut)) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-
-    if (moveOut <= moveIn) {
-      alert('Move-out date must be after move-in date.');
-      return;
-    }
-
-    alert(`Booking request for ${property} submitted successfully!\n\nThank you, ${name}.`);
-    this.reset();
-  });
 
 </body>
 </html>
