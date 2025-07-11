@@ -120,7 +120,8 @@
 
   </div>
     <script>
-  // Booking form submit
+<script>
+  // Handle Booking Form Submission
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -140,7 +141,7 @@
       return;
     }
 
-    // Save to Firebase
+    // Store booking data in Firebase
     firebase.database().ref('bookings').push({
       name,
       property,
@@ -171,5 +172,21 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+    <!-- Firebase scripts + config -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "x-homes.firebaseapp.com",
+    databaseURL: "https://x-homes-default-rtdb.firebaseio.com",
+    projectId: "x-homes",
+    storageBucket: "x-homes.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
 </body>
 </html>
