@@ -94,7 +94,79 @@
     <div class="card">
       <h3>Payment Status</h3>
       <p>Next rent payment due: August 10, 2025</p>
-    </div>
+    </div> <h2 style="margin-top: 40px; color: #10b981;">Request a Booking</h2>
+<form id="bookingForm" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 20px;">
+  <label>Full Name:<br/>
+    <input type="text" id="tenantName" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Property / Location:<br/>
+    <input type="text" id="propertyName" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Move-In Date:<br/>
+    <input type="date" id="moveIn" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Move-Out Date:<br/>
+    <input type="date" id="moveOut" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
+  </label>
+
+  <label>Message to Landlord (optional):<br/>
+    <textarea id="tenantMessage" rows="4" style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;"></textarea>
+  </label>
+
+  <button type
+
   </div>
+    <script>
+  // Booking form validation
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('tenantName').value.trim();
+    const property = document.getElementById('propertyName').value.trim();
+    const moveIn = new Date(document.getElementById('moveIn').value);
+    const moveOut = new Date(document.getElementById('moveOut').value);
+    const message = document.getElementById('tenantMessage').value.trim();
+
+    if (!name || !property || isNaN(moveIn) || isNaN(moveOut)) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (moveOut <= moveIn) {
+      alert('Move-out date must be after move-in date.');
+      return;
+    }
+
+    alert(`Booking request for ${property} submitted successfully!\n\nThank you, ${name}.`);
+    this.reset();
+  });
+</script>
+  // Booking form validation
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('tenantName').value.trim();
+    const property = document.getElementById('propertyName').value.trim();
+    const moveIn = new Date(document.getElementById('moveIn').value);
+    const moveOut = new Date(document.getElementById('moveOut').value);
+    const message = document.getElementById('tenantMessage').value.trim();
+
+    if (!name || !property || isNaN(moveIn) || isNaN(moveOut)) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (moveOut <= moveIn) {
+      alert('Move-out date must be after move-in date.');
+      return;
+    }
+
+    alert(`Booking request for ${property} submitted successfully!\n\nThank you, ${name}.`);
+    this.reset();
+  });
+
 </body>
 </html>
