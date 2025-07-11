@@ -120,30 +120,56 @@
 
   </div>
     <script>
-  // Booking form validation
+  // Booking form submit
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const name = document.getElementById('tenantName').value.trim();
     const property = document.getElementById('propertyName').value.trim();
-    const moveIn = new Date(document.getElementById('moveIn').value);
-    const moveOut = new Date(document.getElementById('moveOut').value);
+    const moveIn = document.getElementById('moveIn').value;
+    const moveOut = document.getElementById('moveOut').value;
     const message = document.getElementById('tenantMessage').value.trim();
 
-    if (!name || !property || isNaN(moveIn) || isNaN(moveOut)) {
+    if (!name || !property || !moveIn || !moveOut) {
       alert('Please fill in all required fields.');
       return;
     }
 
-    if (moveOut <= moveIn) {
+    if (new Date(moveOut) <= new Date(moveIn)) {
       alert('Move-out date must be after move-in date.');
       return;
     }
 
-    alert(`Booking request for ${property} submitted successfully!\n\nThank you, ${name}.`);
+    // Save to Firebase
+    firebase.database().ref('bookings').push({
+      name,
+      property,
+      moveIn,
+      moveOut,
+      message,
+      submittedAt: new Date().toISOString()
+    });
+
+    alert('Booking submitted successfully!');
     this.reset();
   });
 </script>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAIdIYByBgvNxPDs3OebCKpmrcoKQZPgmU",
+  authDomain: "x-homes-d2ed9.firebaseapp.com",
+  projectId: "x-homes-d2ed9",
+  storageBucket: "x-homes-d2ed9.firebasestorage.app",
+  messagingSenderId: "213565555564",
+  appId: "1:213565555564:web:d3b5a0d9638f5570686949"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 </body>
 </html>
