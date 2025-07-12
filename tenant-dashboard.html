@@ -154,11 +154,10 @@
     this.reset();
   });
 </script>
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-    <!-- Firebase scripts + config -->
+<!-- Firebase scripts -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyAIdIYByBgvNxPDs3OebCKpmrcoKQZPgmU",
@@ -169,8 +168,46 @@ const firebaseConfig = {
   messagingSenderId: "213565555564",
   appId: "1:213565555564:web:d3b5a0d9638f5570686949"
 };
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
 
- firebase.initializeApp(firebaseConfig);
+  // Handle Booking Form Submission
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('tenantName').value.trim();
+    const property = document.getElementById('propertyName').value.trim();
+    const moveIn = document.getElementById('moveIn').value;
+    const moveOut = document.getElementById('moveOut').value;
+    const message = document.getElementById('tenantMessage').value.trim();
+
+    if (!name || !property || !moveIn || !moveOut) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (new Date(moveOut) <= new Date(moveIn)) {
+      alert('Move-out date must be after move-in date.');
+      return;
+    }
+
+    // Save to Firebase
+    db.ref('bookings').push({
+      name,
+      property,
+      moveIn,
+      moveOut,
+      message,
+      submittedAt: new Date().toISOString()
+    }).then(() => {
+      alert('Booking submitted successfully!');
+      document.getElementById('bookingForm').reset();
+    }).catch((error) => {
+      console.error('Error saving booking:', error);
+      alert('Failed to submit booking. Try again.');
+    });
+  });
 </script>
 </body>
 </html>
