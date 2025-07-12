@@ -4,51 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>X-HOMES Tenant Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --green: #10b981;
+      --light: #f9fafb;
+      --white: #ffffff;
+      --gray: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
       display: flex;
-      height: 100vh;
+      min-height: 100vh;
+      background-color: var(--light);
     }
 
     .sidebar {
-      width: 220px;
-      background-color: #10b981;
+      width: 240px;
+      background-color: var(--green);
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       display: flex;
       flex-direction: column;
     }
 
     .sidebar h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      font-weight: 600;
     }
 
     .sidebar a {
       color: white;
       text-decoration: none;
       margin: 15px 0;
-      display: block;
+      font-weight: 500;
+      transition: opacity 0.3s;
     }
 
     .sidebar a:hover {
-      text-decoration: underline;
+      opacity: 0.8;
     }
 
     .main {
       flex: 1;
-      background-color: #f9fafb;
-      padding: 30px;
+      padding: 40px;
+      background-color: var(--light);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--green);
+      margin-bottom: 2rem;
     }
 
     .card {
+      background-color: var(--white);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+
+    .card h3 {
+      color: var(--green);
+    }
+
+    form {
       background: white;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-top: 20px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    form button {
+      background-color: var(--green);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
     @media (max-width: 768px) {
@@ -60,11 +119,19 @@
         width: 100%;
         flex-direction: row;
         overflow-x: auto;
-        padding: 10px;
+        padding: 10px 20px;
+      }
+
+      .sidebar h2 {
+        display: none;
       }
 
       .sidebar a {
-        margin: 0 10px;
+        margin: 0 15px;
+      }
+
+      .main {
+        padding: 20px;
       }
     }
   </style>
@@ -83,131 +150,101 @@
 
   <div class="main">
     <h1>Welcome, Tenant!</h1>
+
     <div class="card">
       <h3>Upcoming Booking</h3>
-      <p>You have a booking at East Legon starting August 15, 2025</p>
+      <p>You have a booking at East Legon starting August 15, 2025.</p>
     </div>
+
     <div class="card">
       <h3>Messages</h3>
-      <p>1 unread message from Landlord Kwame</p>
+      <p>1 unread message from Landlord Kwame.</p>
     </div>
+
     <div class="card">
       <h3>Payment Status</h3>
-      <p>Next rent payment due: August 10, 2025</p>
-    </div> <h2 style="margin-top: 40px; color: #10b981;">Request a Booking</h2>
-<form id="bookingForm" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 20px;">
-  <label>Full Name:<br/>
-    <input type="text" id="tenantName" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
-  </label>
+      <p>Next rent payment due: August 10, 2025.</p>
+    </div>
 
-  <label>Property / Location:<br/>
-    <input type="text" id="propertyName" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
-  </label>
+    <h2 style="margin-top: 40px; color: #10b981;">Request a Booking</h2>
+    <form id="bookingForm">
+      <label>Full Name:
+        <input type="text" id="tenantName" required />
+      </label>
 
-  <label>Move-In Date:<br/>
-    <input type="date" id="moveIn" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
-  </label>
+      <label>Property / Location:
+        <input type="text" id="propertyName" required />
+      </label>
 
-  <label>Move-Out Date:<br/>
-    <input type="date" id="moveOut" required style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;" />
-  </label>
+      <label>Move-In Date:
+        <input type="date" id="moveIn" required />
+      </label>
 
-  <label>Message to Landlord (optional):<br/>
-    <textarea id="tenantMessage" rows="4" style="width:100%; margin-top: 5px; margin-bottom: 15px; padding: 8px;"></textarea>
-  </label>
+      <label>Move-Out Date:
+        <input type="date" id="moveOut" required />
+      </label>
 
-  <button type
+      <label>Message to Landlord (optional):
+        <textarea id="tenantMessage" rows="4"></textarea>
+      </label>
 
+      <button type="submit">Submit Request</button>
+    </form>
   </div>
-<script>
-  // Handle Booking Form Submission
-  document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
 
-    const name = document.getElementById('tenantName').value.trim();
-    const property = document.getElementById('propertyName').value.trim();
-    const moveIn = document.getElementById('moveIn').value;
-    const moveOut = document.getElementById('moveOut').value;
-    const message = document.getElementById('tenantMessage').value.trim();
+  <!-- Firebase SDK scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
 
-    if (!name || !property || !moveIn || !moveOut) {
-      alert('Please fill in all required fields.');
-      return;
-    }
+  <!-- Firebase Setup & Form Handling -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAIdIYByBgvNxPDs3OebCKpmrcoKQZPgmU",
+      authDomain: "x-homes-d2ed9.firebaseapp.com",
+      databaseURL: "https://x-homes-d2ed9-default-rtdb.firebaseio.com",
+      projectId: "x-homes-d2ed9",
+      storageBucket: "x-homes-d2ed9.firebasestorage.app",
+      messagingSenderId: "213565555564",
+      appId: "1:213565555564:web:d3b5a0d9638f5570686949"
+    };
 
-    if (new Date(moveOut) <= new Date(moveIn)) {
-      alert('Move-out date must be after move-in date.');
-      return;
-    }
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-    // Store booking data in Firebase
-    firebase.database().ref('bookings').push({
-      name,
-      property,
-      moveIn,
-      moveOut,
-      message,
-      submittedAt: new Date().toISOString()
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('tenantName').value.trim();
+      const property = document.getElementById('propertyName').value.trim();
+      const moveIn = document.getElementById('moveIn').value;
+      const moveOut = document.getElementById('moveOut').value;
+      const message = document.getElementById('tenantMessage').value.trim();
+
+      if (!name || !property || !moveIn || !moveOut) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      if (new Date(moveOut) <= new Date(moveIn)) {
+        alert('Move-out date must be after move-in date.');
+        return;
+      }
+
+      db.ref('bookings').push({
+        name,
+        property,
+        moveIn,
+        moveOut,
+        message,
+        submittedAt: new Date().toISOString()
+      }).then(() => {
+        alert('Booking submitted successfully!');
+        document.getElementById('bookingForm').reset();
+      }).catch((error) => {
+        console.error('Error saving booking:', error);
+        alert('Failed to submit booking. Try again.');
+      });
     });
-
-    alert('Booking submitted successfully!');
-    this.reset();
-  });
-</script>
-<!-- Firebase scripts -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAIdIYByBgvNxPDs3OebCKpmrcoKQZPgmU",
-  authDomain: "x-homes-d2ed9.firebaseapp.com",
-  databaseURL: "https://x-homes-d2ed9-default-rtdb.firebaseio.com",
-  projectId: "x-homes-d2ed9",
-  storageBucket: "x-homes-d2ed9.firebasestorage.app",
-  messagingSenderId: "213565555564",
-  appId: "1:213565555564:web:d3b5a0d9638f5570686949"
-};
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-
-  // Handle Booking Form Submission
-  document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('tenantName').value.trim();
-    const property = document.getElementById('propertyName').value.trim();
-    const moveIn = document.getElementById('moveIn').value;
-    const moveOut = document.getElementById('moveOut').value;
-    const message = document.getElementById('tenantMessage').value.trim();
-
-    if (!name || !property || !moveIn || !moveOut) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-
-    if (new Date(moveOut) <= new Date(moveIn)) {
-      alert('Move-out date must be after move-in date.');
-      return;
-    }
-
-    // Save to Firebase
-    db.ref('bookings').push({
-      name,
-      property,
-      moveIn,
-      moveOut,
-      message,
-      submittedAt: new Date().toISOString()
-    }).then(() => {
-      alert('Booking submitted successfully!');
-      document.getElementById('bookingForm').reset();
-    }).catch((error) => {
-      console.error('Error saving booking:', error);
-      alert('Failed to submit booking. Try again.');
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
